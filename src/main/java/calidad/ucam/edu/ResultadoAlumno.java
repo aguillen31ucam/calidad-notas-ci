@@ -16,4 +16,24 @@ public enum ResultadoAlumno {
     public int getCodigo() {
         return codigo;
     }
+
+    /**
+     * Devuelve el resultado inmediatamente inferior.
+     * SOBRESALIENTE -> NOTABLE
+     * NOTABLE       -> APROBADO
+     * APROBADO      -> SUSPENSO
+     * SUSPENSO/ERROR se quedan igual.
+     */
+    public ResultadoAlumno bajarNivel() {
+        switch (this) {
+            case SOBRESALIENTE:
+                return NOTABLE;
+            case NOTABLE:
+                return APROBADO;
+            case APROBADO:
+                return SUSPENSO;
+            default:
+                return this;
+        }
+    }
 }

@@ -85,41 +85,42 @@ public class AlumnoTest {
 
     // ***** PRUEBAS QUE VAN A FALLAR (A PROPÓSITO) *****
 
-    // 5) assertEquals
+    // 5) assertEquals - segunda comprobación de media con otro alumno
     @Test
-    public void testMediaErr() {
-        double mediaEsperadaIncorrecta = 6.0; // media incorrecta
-        double mediaObtenida = alumno.getMedia();
+    public void testMediaOtroAlumnoOK() {
+        int[] notas = {6, 6, 6, 6, 6}; // media = 6.0
+        Alumno alumno2 = new Alumno("Pepe", notas, 80, 60);
 
-        // la prueba debe fallar porque la media real es 7.0
-        assertEquals("Prueba pensada para FALLAR: la media no es 6.0", mediaEsperadaIncorrecta, mediaObtenida, 0.0001);
+        double mediaEsperada = 6.0;
+        double mediaObtenida = alumno2.getMedia();
+
+        assertEquals("La media del segundo alumno debería ser 6.0", mediaEsperada, mediaObtenida, 0.0001);
     }
 
-    // 6) assertNull
+
+    // 6) assertNotNull - comprobamos que un alumno creado no es null
     @Test
-    public void testNoNuloErr() {
+    public void testAlumnoCreadoNoEsNull() {
         Alumno otroAlumno = new Alumno("Pepe", notasValidas, 90, 90);
 
-        //la prueba debe fallar porque otroAlumno está inicializado
-        assertNull("Prueba pensada para FALLAR: el alumno no es null", otroAlumno);
+        assertNotNull("El alumno creado no debería ser null", otroAlumno);
     }
 
-    // 7) assertSame
+    // 7) assertNotSame - comprobamos que son objetos distintos
     @Test
-    public void testReferenciasErr() {
+    public void testReferenciasDistintasOK() {
         Alumno otroAlumno = new Alumno("Luis", notasValidas, 80, 60);
 
-        //debe fallar porque otroAlumno y alumno no deben tener la misma referencia
-        assertSame("Prueba pensada para FALLAR: no son la misma referencia", alumno, otroAlumno);
+        assertNotSame("Los dos alumnos deberían ser objetos distintos", alumno, otroAlumno);
     }
 
-    // 8) assertArrayEquals
+    // 8) assertArrayEquals - comprobamos que el array de notas es el esperado
     @Test
-    public void testIntegridadNotasErr() {
-        int[] notasEsperadas = {7, 8, 6, 9, 4}; // última nota distinta a propósito
+    public void testIntegridadNotasOK() {
+        int[] notasEsperadas = {7, 8, 6, 9, 5}; // coincide con las notas del setUp
 
-        //falla porque las notas esperadas no coinciden con las definidas en el setup {7, 8, 6, 9, 5}
-        assertArrayEquals("Prueba pensada para FALLAR: los arrays de notas no coinciden", notasEsperadas, alumno.getNotas());
+        assertArrayEquals("El array de notas del alumno debería coincidir con el esperado",
+                notasEsperadas, alumno.getNotas());
     }
 }
 

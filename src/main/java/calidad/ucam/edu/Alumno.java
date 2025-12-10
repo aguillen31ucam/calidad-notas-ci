@@ -76,25 +76,24 @@ public class Alumno {
             resultado = ResultadoAlumno.SOBRESALIENTE;
         }
 
-        // Reglas según asistencia
+     // Reglas según asistencia
         if (asistencia < 50) {
             // Asistencia muy baja - suspenso directo
             resultado = ResultadoAlumno.SUSPENSO;
         } else if (asistencia < 75) {
             // Asistencia justa - baja un nivel si no está suspenso
-        	if (resultado != ResultadoAlumno.SUSPENSO) {
-                resultado = ResultadoAlumno.values()[resultado.getCodigo() - 1];
+            if (resultado != ResultadoAlumno.SUSPENSO && resultado != ResultadoAlumno.ERROR) {
+                resultado = resultado.bajarNivel();
             }
         }
 
         // Reglas según entregas de tareas
         if (entregas < 50) {
             // Si entrega pocas tareas y no estaba suspenso, baja un nivel
-            if (resultado != ResultadoAlumno.SUSPENSO) {
-                resultado = ResultadoAlumno.values()[resultado.getCodigo() - 1];
+            if (resultado != ResultadoAlumno.SUSPENSO && resultado != ResultadoAlumno.ERROR) {
+                resultado = resultado.bajarNivel();
             }
         }
-
         return resultado;
     }
 }
