@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
@@ -24,8 +24,6 @@ jobs:
       run: mvn -B clean test package
 
     # (Opcional) Análisis de calidad con SonarCloud:
-    # Rellena SONAR_TOKEN como secreto en GitHub
-    # y cambia <tu-org> y <tu-project-key> por los tuyos.
     # - name: SonarCloud Scan
     #   uses: SonarSource/sonarcloud-github-action@v2
     #   env:
@@ -36,7 +34,7 @@ jobs:
     #       -Dsonar.projectKey=<tu-project-key>
 
     - name: Publicar artefacto JAR
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: app-jar
         path: target/*.jar
