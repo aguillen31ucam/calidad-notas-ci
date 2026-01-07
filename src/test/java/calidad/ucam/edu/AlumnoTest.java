@@ -91,7 +91,7 @@ public class AlumnoTest {
         int[] notas = {6, 6, 6, 6, 6}; // media = 6.0
         Alumno alumno2 = new Alumno("Pepe", notas, 80, 60);
 
-        double mediaEsperada = 6.0;
+        double mediaEsperada = 8.0;
         double mediaObtenida = alumno2.getMedia();
 
         assertEquals("La media del segundo alumno debería ser 6.0", mediaEsperada, mediaObtenida, 0.0001);
