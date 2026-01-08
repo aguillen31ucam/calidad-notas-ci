@@ -48,7 +48,7 @@ public class AlumnoTest {
     // 1) assertEquals - para comparar 2 valores iguales con una diferencia máx de 0.0001, en este caso, media esperada y la media del alumno deben ser iguales para que esta prueba pase
     @Test
     public void testMediaOK() {
-        double mediaEsperada = 7.0;
+        double mediaEsperada = 7.0; //MAL PORQUE MEDIA ESPERADO = 7. CAMBIADO PARA UE FALLE.
         double mediaObtenida = alumno.getMedia();
 
         assertEquals("La media debería ser 7.0", mediaEsperada, mediaObtenida, 0.0001);
